@@ -10,13 +10,13 @@ script:
   - docker run ngbaophuc/fibonaci npm test -- --coverage
 
 after_success:
-  - docker build -t ngbaophuc/fibonaci-client -f ./client/prod.Dockerfile ./client
-  - docker build -t ngbaophuc/fibonaci-nginx -f ./nginx/prod.Dockerfile ./nginx
-  - docker build -t ngbaophuc/fibonaci-server -f ./server/prod.Dockerfile ./server
-  - docker build -t ngbaophuc/fibonaci-worker -f ./worker/prod.Dockerfile ./worker
+  - docker build -t ngbaophuc/fibonaci-client:latest -f ./client/prod.Dockerfile ./client
+  - docker build -t ngbaophuc/fibonaci-nginx:latest -f ./nginx/prod.Dockerfile ./nginx
+  - docker build -t ngbaophuc/fibonaci-server:latest -f ./server/prod.Dockerfile ./server
+  - docker build -t ngbaophuc/fibonaci-worker:latest -f ./worker/prod.Dockerfile ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push fibonaci-client
-  - docker push fibonaci-nginx
-  - docker push fibonaci-server
-  - docker push fibonaci-worker
+  - docker push fibonaci-client:latest
+  - docker push fibonaci-nginx:latest
+  - docker push fibonaci-server:latest
+  - docker push fibonaci-worker:latest
